@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: roy_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: atc_admin
+      MONGO_INITDB_ROOT_PASSWORD: roy_mediterranean_2024
+      MONGO_INITDB_DATABASE: roy_mediterranean
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - roy_network
+
+  api:
+    build: ./api
+    container_name: roy_api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://atc_admin:roy_mediterranean_2024@roy_mongo:27017/roy_mediterranean?authSource=admin
+      - PORT=3000
+      - UPLOAD_DIR=/app/uploads
+    volumes:
+      - uploads:/app/uploads
+    depends_on:
+      - mongodb
+    networks:
+      - roy_network
+
+  frontend:
+    image: nginx:alpine
+    container_name: roy_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+    networks:
+      - roy_network
+
+volumes:
+  mongo_data:
+  uploads:
+
+networks:
+  roy_network:
+    driver: bridge

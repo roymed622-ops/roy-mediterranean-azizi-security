@@ -1,0 +1,45 @@
+
+╔══════════════════════════════════════════════════════════════════╗
+║     ROY MEDITERRANEAN by AZIZI PROPERTY - MANAGED BY ATC          ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  🎯 SYSTEM PRINCIPLE: Just add data → Auto-updates everything    ║
+║                                                                   ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  📋 THREE THINGS YOU ADD:                                         ║
+║                                                                   ║
+║  1. MOVEMENTS (Move-in/Move-out/Transfer/Renewal)                ║
+║     → Auto-updates: Unit status, Resident, Lease dates           ║
+║                                                                   ║
+║  2. PAYMENTS (Rent/Deposit/Fees)                                   ║
+║     → Auto-updates: Revenue, Balance, Receipts                   ║
+║                                                                   ║
+║  3. UNITS (When new unit available)                               ║
+║     → Added to system for movements                               ║
+║                                                                   ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  🚀 QUICK START:                                                  ║
+║                                                                   ║
+║  docker-compose up -d                                             ║
+║  open http://localhost                                            ║
+║                                                                   ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  📊 AUTO-CALCULATED METRICS:                                      ║
+║  • Occupancy rate                                                 ║
+║  • Revenue (monthly/YTD)                                          ║
+║  • Expiring leases (≤30 days)                                     ║
+║  • Resident balances                                              ║
+║  • Unit history                                                   ║
+║                                                                   ║
+╠══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  🔗 KEY API CALLS:                                                ║
+║                                                                   ║
+║  POST /api/movements    ← Add movement (triggers auto-updates)   ║
+║  POST /api/payments     ← Add payment (triggers auto-updates)    ║
+║  GET  /api/dashboard    ← View all auto-calculated metrics         ║
+║                                                                   ║
+╚══════════════════════════════════════════════════════════════════╝

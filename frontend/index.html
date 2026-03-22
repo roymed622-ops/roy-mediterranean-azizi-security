@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roy Mediterranean by Azizi Property - ATC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%); min-height: 100vh; }
+        .glass-panel { background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px); }
+        .mediterranean-gradient { background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%); }
+        .atc-badge { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .auto-sync { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .movement-card { transition: all 0.3s; border-left: 4px solid transparent; }
+        .movement-card:hover { transform: translateX(5px); }
+        .move-in { border-left-color: #10b981; }
+        .move-out { border-left-color: #ef4444; }
+        .renewal { border-left-color: #f59e0b; }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header -->
+    <header class="mediterranean-gradient text-white shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
+                        <i class="fas fa-building text-3xl text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold">Roy Mediterranean</h1>
+                        <p class="text-blue-100 text-sm">by Azizi Property</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="atc-badge text-white px-4 py-2 rounded-full font-bold shadow-lg">
+                        <i class="fas fa-shield-alt mr-2"></i>Managed by ATC
+                    </div>
+                    <div class="bg-white/20 backdrop-blur px-4 py-2 rounded-lg text-sm">
+                        <span class="auto-sync inline-block w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                        Auto-Sync Active
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto p-4 md:p-6">
+        <!-- Dashboard Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+            <div class="glass-panel rounded-xl p-4 shadow-lg">
+                <div class="text-3xl font-bold text-blue-600" id="statTotal">-</div>
+                <div class="text-sm text-gray-600">Total Units</div>
+            </div>
+            <div class="glass-panel rounded-xl p-4 shadow-lg">
+                <div class="text-3xl font-bold text-emerald-600" id="statOccupied">-</div>
+                <div class="text-sm text-gray-600">Occupied</div>
+            </div>
+            <div class="glass-panel rounded-xl p-4 shadow-lg">
+                <div class="text-3xl font-bold text-amber-600" id="statVacant">-</div>
+                <div class="text-sm text-gray-600">Vacant</div>
+            </div>
+            <div class="glass-panel rounded-xl p-4 shadow-lg">
+                <div class="text-3xl font-bold text-red-600" id="statExpiring">-</div>
+                <div class="text-sm text-gray-600">Expiring Soon</div>
+            </div>
+            <div class="glass-panel rounded-xl p-4 shadow-lg col-span-2 md:col-span-1">
+                <div class="text-2xl font-bold text-emerald-600" id="statRevenue">-</div>
+                <div class="text-sm text-gray-600">This Month (AED)</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <button onclick="showSection('movements')" class="glass-panel rounded-xl p-6 shadow-lg hover:shadow-xl transition text-left group">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 group-hover:scale-110 transition">
+                        <i class="fas fa-exchange-alt text-xl"></i>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <h3 class="font-bold text-lg text-gray-800">Record Movement</h3>
+                <p class="text-sm text-gray-500 mt-1">Move-in, Move-out, Transfer, Renewal</p>
+                <div class="mt-3 text-xs text-emerald-600 font-medium">
+                    <i class="fas fa-magic mr-1"></i>Auto-updates everything
+                </div>
+            </button>
+
+            <button onclick="showSection('payments')" class="glass-panel rounded-xl p-6 shadow-lg hover:shadow-xl transition text-left group">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:scale-110 transition">
+                        <i class="fas fa-credit-card text-xl"></i>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <h3 class="font-bold text-lg text-gray-800">Record Payment</h3>
+                <p class="text-sm text-gray-500 mt-1">Rent, Deposit, Agency Fee</p>
+                <div class="mt-3 text-xs text-blue-600 font-medium">
+                    <i class="fas fa-sync mr-1"></i>Auto-updates balances
+                </div>
+            </button>
+
+            <button onclick="showSection('units')" class="glass-panel rounded-xl p-6 shadow-lg hover:shadow-xl transition text-left group">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 group-hover:scale-110 transition">
+                        <i class="fas fa-list text-xl"></i>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <h3 class="font-bold text-lg text-gray-800">View All Units</h3>
+                <p class="text-sm text-gray-500 mt-1">Status, Residents, History</p>
+                <div class="mt-3 text-xs text-purple-600 font-medium">
+                    <i class="fas fa-bolt mr-1"></i>Real-time data
+                </div>
+            </button>
+        </div>
+
+        <!-- SECTION: Record Movement -->
+        <div id="section-movements" class="glass-panel rounded-2xl shadow-xl p-6 mb-6 hidden">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-exchange-alt text-emerald-600 mr-2"></i>
+                        Record Movement
+                    </h2>
+                    <p class="text-gray-500 mt-1">Just add movement → System auto-updates unit & resident</p>
+                </div>
+                <button onclick="showSection('dashboard')" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <form onsubmit="recordMovement(event)" class="space-y-6">
+                <!-- Movement Type -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="movementType" value="Move-In" checked class="hidden peer">
+                        <div class="p-4 rounded-xl border-2 border-gray-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 text-center transition">
+                            <i class="fas fa-sign-in-alt text-2xl text-emerald-600 mb-2"></i>
+                            <div class="font-semibold">Move-In</div>
+                            <div class="text-xs text-gray-500">New resident</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="movementType" value="Move-Out" class="hidden peer">
+                        <div class="p-4 rounded-xl border-2 border-gray-200 peer-checked:border-red-500 peer-checked:bg-red-50 text-center transition">
+                            <i class="fas fa-sign-out-alt text-2xl text-red-600 mb-2"></i>
+                            <div class="font-semibold">Move-Out</div>
+                            <div class="text-xs text-gray-500">Resident leaving</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="movementType" value="Transfer" class="hidden peer">
+                        <div class="p-4 rounded-xl border-2 border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-50 text-center transition">
+                            <i class="fas fa-random text-2xl text-blue-600 mb-2"></i>
+                            <div class="font-semibold">Transfer</div>
+                            <div class="text-xs text-gray-500">Unit change</div>
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="movementType" value="Renewal" class="hidden peer">
+                        <div class="p-4 rounded-xl border-2 border-gray-200 peer-checked:border-amber-500 peer-checked:bg-amber-50 text-center transition">
+                            <i class="fas fa-sync-alt text-2xl text-amber-600 mb-2"></i>
+                            <div class="font-semibold">Renewal</div>
+                            <div class="text-xs text-gray-500">Extend lease</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Unit Selection -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Unit *</label>
+                        <select id="movementUnit" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-lg">
+                            <option value="">Select unit...</option>
+                        </select>
+                    </div>
+
+                    <!-- Resident Info -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Resident Full Name *</label>
+                        <input type="text" id="residentName" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-lg" placeholder="Full name">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" id="residentPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="+971 XX XXX XXXX">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="residentEmail" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="email@example.com">
+                    </div>
+
+                    <!-- Dates -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Move-In Date *</label>
+                        <input type="date" id="moveInDate" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Lease End Date *</label>
+                        <input type="date" id="leaseEndDate" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                    </div>
+
+                    <!-- Financial -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Rent (AED) *</label>
+                        <input type="number" id="monthlyRent" required min="0" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-lg" placeholder="0">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Security Deposit (AED)</label>
+                        <input type="number" id="securityDeposit" min="0" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="0">
+                    </div>
+                </div>
+
+                <!-- Payment at Move-In -->
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                    <h4 class="font-semibold text-gray-700 mb-3">Initial Payment (Optional)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">Amount Paid</label>
+                            <input type="number" id="initialPayment" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="0">
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">Payment Method</label>
+                            <select id="initialPaymentMethod" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                                <option value="Cash">Cash</option>
+                                <option value="Cheque">Cheque</option>
+                                <option value="Bank Transfer">Bank Transfer</option>
+                                <option value="Credit Card">Credit Card</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-600 mb-1">Reference/Cheque #</label>
+                            <input type="text" id="initialPaymentRef" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Reference number">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="showSection('dashboard')" class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium">Cancel</button>
+                    <button type="submit" class="bg-emerald-600 text-white px-8 py-3 rounded-xl hover:bg-emerald-700 font-bold text-lg shadow-lg hover:shadow-xl transition">
+                        <i class="fas fa-save mr-2"></i>Record Movement
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SECTION: Record Payment -->
+        <div id="section-payments" class="glass-panel rounded-2xl shadow-xl p-6 mb-6 hidden">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-credit-card text-blue-600 mr-2"></i>
+                        Record Payment
+                    </h2>
+                    <p class="text-gray-500 mt-1">Just add payment → System auto-updates resident balance</p>
+                </div>
+                <button onclick="showSection('dashboard')" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <form onsubmit="recordPayment(event)" class="max-w-2xl space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select Unit/Resident *</label>
+                        <select id="paymentUnit" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-lg">
+                            <option value="">Select...</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Type *</label>
+                        <select id="paymentType" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="Rent">Monthly Rent</option>
+                            <option value="Deposit">Security Deposit</option>
+                            <option value="Agency Fee">Agency Fee</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Penalty">Late Penalty</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Amount (AED) *</label>
+                        <input type="number" id="paymentAmount" required min="0" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-lg" placeholder="0">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Method *</label>
+                        <select id="paymentMethod" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="Cash">Cash</option>
+                            <option value="Cheque">Cheque</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Online">Online Payment</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Payment Date *</label>
+                        <input type="date" id="paymentDate" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Reference/Cheque #</label>
+                        <input type="text" id="paymentReference" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cheque # or Reference">
+                    </div>
+                </div>
+
+                <!-- For rent payments: which month -->
+                <div id="rentPeriodSection" class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                    <h4 class="font-semibold text-blue-800 mb-3">Rent Period</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm text-blue-700 mb-1">For Month</label>
+                            <select id="rentMonth" class="w-full px-3 py-2 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-blue-700 mb-1">Year</label>
+                            <input type="number" id="rentYear" class="w-full px-3 py-2 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" value="2024">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="showSection('dashboard')" class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium">Cancel</button>
+                    <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 font-bold text-lg shadow-lg hover:shadow-xl transition">
+                        <i class="fas fa-save mr-2"></i>Record Payment
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SECTION: Units List -->
+        <div id="section-units" class="glass-panel rounded-2xl shadow-xl p-6 mb-6 hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-list text-purple-600 mr-2"></i>
+                        All Units
+                    </h2>
+                    <p class="text-gray-500 mt-1">Auto-updates from movements & payments</p>
+                </div>
+                <div class="flex space-x-2">
+                    <select id="filterBuilding" onchange="loadUnits()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                        <option value="">All Buildings</option>
+                        <option value="A">Building A</option>
+                        <option value="B">Building B</option>
+                        <option value="C">Building C</option>
+                        <option value="D">Building D</option>
+                    </select>
+                    <select id="filterStatus" onchange="loadUnits()" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                        <option value="">All Status</option>
+                        <option value="Vacant">Vacant</option>
+                        <option value="Occupied">Occupied</option>
+                        <option value="Maintenance">Maintenance</option>
+                    </select>
+                    <button onclick="showSection('dashboard')" class="text-gray-400 hover:text-gray-600 px-3">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b-2 border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Unit</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Type</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Status</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Current Resident</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Rent (AED)</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Lease Expiry</th>
+                            <th class="px-4 py-3 text-sm font-bold text-gray-700">Revenue (YTD)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="unitsTable" class="divide-y divide-gray-100">
+                        <!-- Auto-populated -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION: Recent Activity (Dashboard) -->
+        <div id="section-dashboard" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Recent Movements -->
+            <div class="glass-panel rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">
+                        <i class="fas fa-history text-emerald-600 mr-2"></i>
+                        Recent Movements
+                    </h3>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Auto-synced</span>
+                </div>
+                <div id="recentMovements" class="space-y-3 max-h-[400px] overflow-y-auto">
+                    <!-- Auto-populated -->
+                </div>
+            </div>
+
+            <!-- Expiring Leases -->
+            <div class="glass-panel rounded-2xl shadow-xl p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-gray-800">
+                        <i class="fas fa-exclamation-triangle text-amber-600 mr-2"></i>
+                        Expiring Soon (≤30 days)
+                    </h3>
+                    <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full" id="expiringCount">0</span>
+                </div>
+                <div id="expiringLeases" class="space-y-3 max-h-[400px] overflow-y-auto">
+                    <!-- Auto-populated -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        <!-- SECTION: Document Management -->
+        <div id="section-documents" class="glass-panel rounded-2xl shadow-xl p-6 mb-6 hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-4 md:space-y-0">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">
+                        <i class="fas fa-folder-open text-purple-600 mr-2"></i>
+                        Document Management
+                    </h2>
+                    <p class="text-gray-500 mt-1">Upload and manage all property documents</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="showDocumentUploader()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+                        <i class="fas fa-upload mr-2"></i>Upload Document
+                    </button>
+                    <button onclick="showDocumentChecker()" class="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700">
+                        <i class="fas fa-clipboard-check mr-2"></i>Check Missing
+                    </button>
+                    <button onclick="showSection('dashboard')" class="text-gray-400 hover:text-gray-600 px-3">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Document Upload Form -->
+            <div id="documentUploadForm" class="hidden bg-purple-50 rounded-xl p-6 mb-6 border border-purple-200">
+                <h3 class="font-bold text-purple-800 mb-4">Upload New Document</h3>
+                <form id="uploadDocForm" enctype="multipart/form-data">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Document Category *</label>
+                            <select id="docCategory" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                                <option value="">Select category...</option>
+                                <option value="Title Deed">📜 Title Deed (ملكية)</option>
+                                <option value="Owner Passport">🛂 Owner Passport</option>
+                                <option value="Owner ID">🆔 Owner ID (Emirates ID)</option>
+                                <option value="Ejari">📋 Ejari (إيجاري)</option>
+                                <option value="Tenancy Contract">📄 Tenancy Contract</option>
+                                <option value="Tenant Passport">🛂 Tenant Passport</option>
+                                <option value="Tenant ID">🆔 Tenant ID (Emirates ID)</option>
+                                <option value="Move In Permit">✅ Move In Permit</option>
+                                <option value="Move Out Permit">🚪 Move Out Permit</option>
+                                <option value="NOC">📨 NOC (No Objection)</option>
+                                <option value="DEWA Bill">💡 DEWA Bill</option>
+                                <option value="Insurance">🛡️ Insurance</option>
+                                <option value="Other">📎 Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Linked To *</label>
+                            <select id="docEntityType" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                                <option value="">Select...</option>
+                                <option value="Unit">Unit (Property)</option>
+                                <option value="Tenant">Tenant/Resident</option>
+                                <option value="Movement">Movement/Transaction</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Unit/Entity ID *</label>
+                            <select id="docEntityId" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                                <option value="">Select unit first...</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Document Title *</label>
+                            <input type="text" id="docTitle" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="e.g., Title Deed - Ahmed Hassan">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Document Number</label>
+                            <input type="text" id="docNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="Passport #, Title Deed #, etc.">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Issuing Authority</label>
+                            <input type="text" id="docAuthority" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="DLD, DEWA, etc.">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Issue Date</label>
+                            <input type="date" id="docIssueDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                            <input type="date" id="docExpiryDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                        <textarea id="docDescription" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="Additional notes..."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select File * (PDF, JPG, PNG, max 50MB)</label>
+                        <div class="border-2 border-dashed border-purple-300 rounded-xl p-6 text-center hover:bg-purple-50 transition cursor-pointer" onclick="document.getElementById('docFile').click()">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-purple-400 mb-2"></i>
+                            <p class="text-gray-600">Click to select file or drag & drop</p>
+                            <p class="text-sm text-gray-400 mt-1" id="selectedFileName">No file selected</p>
+                            <input type="file" id="docFile" required accept=".pdf,.jpg,.jpeg,.png,.tiff" class="hidden" onchange="updateFileName(this)">
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="hideDocumentUploader()" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                        <button type="button" onclick="uploadDocument()" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 font-medium">
+                            <i class="fas fa-upload mr-2"></i>Upload Document
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Document Checker -->
+            <div id="documentChecker" class="hidden bg-amber-50 rounded-xl p-6 mb-6 border border-amber-200">
+                <h3 class="font-bold text-amber-800 mb-4">Check Required Documents</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Select Unit</label>
+                        <select id="checkUnitId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                            <option value="">Choose unit...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Operation</label>
+                        <select id="checkOperation" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 outline-none">
+                            <option value="Move-In">Move-In</option>
+                            <option value="Move-Out">Move-Out</option>
+                            <option value="Sale">Sale</option>
+                            <option value="Renewal">Renewal</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button onclick="checkRequiredDocuments()" class="w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700 font-medium">
+                            Check Documents
+                        </button>
+                    </div>
+                </div>
+                <div id="checkResults" class="hidden">
+                    <!-- Results shown here -->
+                </div>
+            </div>
+
+            <!-- Documents List -->
+            <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
+                    <h3 class="font-semibold text-gray-700">All Documents</h3>
+                    <div class="flex space-x-2">
+                        <select id="filterDocCategory" onchange="loadDocuments()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm">
+                            <option value="">All Categories</option>
+                            <option value="Title Deed">Title Deed</option>
+                            <option value="Owner Passport">Owner Passport</option>
+                            <option value="Owner ID">Owner ID</option>
+                            <option value="Ejari">Ejari</option>
+                            <option value="Tenancy Contract">Tenancy Contract</option>
+                            <option value="Tenant Passport">Tenant Passport</option>
+                            <option value="Tenant ID">Tenant ID</option>
+                            <option value="Move In Permit">Move In Permit</option>
+                            <option value="Move Out Permit">Move Out Permit</option>
+                        </select>
+                        <select id="filterDocStatus" onchange="loadDocuments()" class="px-3 py-1 border border-gray-300 rounded-lg text-sm">
+                            <option value="">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Expired">Expired</option>
+                            <option value="Expiring Soon">Expiring Soon</option>
+                        </select>
+                        <input type="text" id="searchDocs" placeholder="Search..." class="px-3 py-1 border border-gray-300 rounded-lg text-sm" onkeyup="loadDocuments()">
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Document</th>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Category</th>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Linked To</th>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Status</th>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Expiry</th>
+                                <th class="px-4 py-3 text-xs font-bold text-gray-700">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="documentsTable" class="divide-y divide-gray-100">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="emptyDocuments" class="hidden text-center py-12 text-gray-400">
+                    <i class="fas fa-folder-open text-4xl mb-3 opacity-30"></i>
+                    <p>No documents uploaded yet</p>
+                </div>
+            </div>
+        </div>
+
+
+<!-- Toast -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-6 py-3 rounded-xl shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center">
+        <i id="toastIcon" class="fas fa-check-circle text-emerald-400 mr-3"></i>
+        <span id="toastMessage">Success</span>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api';
+
+        
+        // Document Management Functions
+        function showDocumentUploader() {
+            document.getElementById('documentUploadForm').classList.remove('hidden');
+            document.getElementById('documentChecker').classList.add('hidden');
+            loadUnitsForDocSelect();
+        }
+
+        function hideDocumentUploader() {
+            document.getElementById('documentUploadForm').classList.add('hidden');
+        }
+
+        function showDocumentChecker() {
+            document.getElementById('documentChecker').classList.remove('hidden');
+            document.getElementById('documentUploadForm').classList.add('hidden');
+            loadUnitsForCheck();
+        }
+
+        function updateFileName(input) {
+            if (input.files && input.files[0]) {
+                document.getElementById('selectedFileName').textContent = input.files[0].name;
+            }
+        }
+
+        async function loadUnitsForDocSelect() {
+            try {
+                const res = await fetch(`${API_URL}/units?limit=100`);
+                const data = await res.json();
+
+                const select = document.getElementById('docEntityId');
+                select.innerHTML = '<option value="">Select...</option>' +
+                    (data.units || []).map(u => `<option value="${u.unit_id}" data-building="${u.building}">${u.unit_id} - ${u.building} Tower (${u.status})</option>`).join('');
+            } catch (error) {
+                console.error('Error loading units:', error);
+            }
+        }
+
+        async function loadUnitsForCheck() {
+            try {
+                const res = await fetch(`${API_URL}/units?limit=100`);
+                const data = await res.json();
+
+                const select = document.getElementById('checkUnitId');
+                select.innerHTML = '<option value="">Choose unit...</option>' +
+                    (data.units || []).map(u => `<option value="${u.unit_id}">${u.unit_id} - ${u.status}</option>`).join('');
+            } catch (error) {
+                console.error('Error loading units:', error);
+            }
+        }
+
+        async function uploadDocument() {
+            const formData = new FormData();
+
+            const fileInput = document.getElementById('docFile');
+            if (!fileInput.files || !fileInput.files[0]) {
+                showToast('Please select a file', 'error');
+                return;
+            }
+
+            formData.append('document', fileInput.files[0]);
+            formData.append('document_category', document.getElementById('docCategory').value);
+            formData.append('entity_type', document.getElementById('docEntityType').value);
+            formData.append('entity_id', document.getElementById('docEntityId').value);
+            formData.append('title', document.getElementById('docTitle').value);
+            formData.append('description', document.getElementById('docDescription').value);
+            formData.append('document_number', document.getElementById('docNumber').value);
+            formData.append('issuing_authority', document.getElementById('docAuthority').value);
+            formData.append('issue_date', document.getElementById('docIssueDate').value);
+            formData.append('expiry_date', document.getElementById('docExpiryDate').value);
+
+            try {
+                const res = await fetch(`${API_URL}/documents/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(`Document uploaded! ID: ${data.document_id}`);
+                    document.getElementById('uploadDocForm').reset();
+                    document.getElementById('selectedFileName').textContent = 'No file selected';
+                    hideDocumentUploader();
+                    loadDocuments();
+                } else {
+                    showToast(data.error || 'Upload failed', 'error');
+                }
+            } catch (error) {
+                showToast('Network error', 'error');
+            }
+        }
+
+        async function checkRequiredDocuments() {
+            const unitId = document.getElementById('checkUnitId').value;
+            const operation = document.getElementById('checkOperation').value;
+
+            if (!unitId) {
+                showToast('Please select a unit', 'error');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/units/${unitId}/check-documents?operation=${operation}`);
+                const data = await res.json();
+
+                const resultsDiv = document.getElementById('checkResults');
+                resultsDiv.classList.remove('hidden');
+
+                let html = `
+                    <div class="mt-4 p-4 rounded-lg ${data.is_complete ? 'bg-emerald-100 border border-emerald-300' : 'bg-red-100 border border-red-300'}">
+                        <div class="flex items-center mb-3">
+                            <i class="fas ${data.is_complete ? 'fa-check-circle text-emerald-600' : 'fa-exclamation-triangle text-red-600'} text-2xl mr-3"></i>
+                            <div>
+                                <div class="font-bold ${data.is_complete ? 'text-emerald-800' : 'text-red-800'}">
+                                    ${data.is_complete ? 'All Required Documents Present' : 'Missing Required Documents'}
+                                </div>
+                                <div class="text-sm ${data.is_complete ? 'text-emerald-700' : 'text-red-700'}">
+                                    ${data.existing_documents.length} of ${data.required_documents.length} documents found
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (data.missing_documents.length > 0) {
+                    html += `
+                        <div class="mt-4">
+                            <h4 class="font-bold text-red-700 mb-2">Missing Documents:</h4>
+                            <div class="space-y-2">
+                                ${data.missing_documents.map(d => `
+                                    <div class="flex items-center p-2 bg-white rounded border border-red-200">
+                                        <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                                        <span>${d}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                if (data.existing_documents.length > 0) {
+                    html += `
+                        <div class="mt-4">
+                            <h4 class="font-bold text-emerald-700 mb-2">Present Documents:</h4>
+                            <div class="space-y-2">
+                                ${data.documents.map(d => `
+                                    <div class="flex items-center p-2 bg-white rounded border border-emerald-200">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>${d.category} - ${d.title}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                resultsDiv.innerHTML = html;
+
+            } catch (error) {
+                showToast('Error checking documents', 'error');
+            }
+        }
+
+        async function loadDocuments() {
+            try {
+                const category = document.getElementById('filterDocCategory').value;
+                const status = document.getElementById('filterDocStatus').value;
+                const search = document.getElementById('searchDocs').value;
+
+                let url = `${API_URL}/documents`;
+                const params = new URLSearchParams();
+                if (category) params.append('category', category);
+                if (status) params.append('status', status);
+                if (search) params.append('search', search);
+                if (params.toString()) url += `?${params.toString()}`;
+
+                const res = await fetch(url);
+                const data = await res.json();
+
+                const tbody = document.getElementById('documentsTable');
+                const empty = document.getElementById('emptyDocuments');
+
+                if (!data.documents || data.documents.length === 0) {
+                    tbody.innerHTML = '';
+                    empty.classList.remove('hidden');
+                    return;
+                }
+
+                empty.classList.add('hidden');
+                tbody.innerHTML = data.documents.map(d => {
+                    let statusColor = 'bg-gray-100 text-gray-800';
+                    let statusIcon = 'fa-circle';
+                    if (d.status === 'Active') {
+                        statusColor = 'bg-emerald-100 text-emerald-800';
+                        statusIcon = 'fa-check';
+                    } else if (d.status === 'Expired') {
+                        statusColor = 'bg-red-100 text-red-800';
+                        statusIcon = 'fa-times';
+                    } else if (d.expiry_date && new Date(d.expiry_date) <= new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)) {
+                        statusColor = 'bg-amber-100 text-amber-800';
+                        statusIcon = 'fa-exclamation';
+                    }
+
+                    return `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-4 py-3">
+                                <div class="font-medium text-gray-800">${d.title}</div>
+                                <div class="text-xs text-gray-500">${d.document_id}</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">${d.category}</span>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <div>${d.linked_to.entity_id}</div>
+                                <div class="text-xs text-gray-500">${d.linked_to.entity_type}</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs ${statusColor}">
+                                    <i class="fas ${statusIcon} mr-1 text-xs"></i>
+                                    ${d.status}
+                                </span>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                ${d.expiry_date ? new Date(d.expiry_date).toLocaleDateString() : '-'}
+                            </td>
+                            <td class="px-4 py-3">
+                                <button onclick="downloadDocument('${d.document_id}')" class="text-blue-600 hover:text-blue-800 mr-2" title="Download">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button onclick="deleteDocument('${d.document_id}')" class="text-red-600 hover:text-red-800" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error('Error loading documents:', error);
+            }
+        }
+
+        async function downloadDocument(docId) {
+            window.open(`${API_URL}/documents/${docId}/download`, '_blank');
+        }
+
+        async function deleteDocument(docId) {
+            if (!confirm('Delete this document permanently?')) return;
+
+            try {
+                const res = await fetch(`${API_URL}/documents/${docId}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast('Document deleted');
+                    loadDocuments();
+                } else {
+                    showToast(data.error || 'Delete failed', 'error');
+                }
+            } catch (error) {
+                showToast('Network error', 'error');
+            }
+        }
+
+
+// Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDashboard();
+            loadUnitsForSelect();
+
+            // Set today's date
+            document.getElementById('paymentDate').valueAsDate = new Date();
+            document.getElementById('moveInDate').valueAsDate = new Date();
+
+            // Default lease end (1 year from today)
+            const nextYear = new Date();
+            nextYear.setFullYear(nextYear.getFullYear() + 1);
+            document.getElementById('leaseEndDate').valueAsDate = nextYear;
+        });
+
+        // Navigation
+        function showSection(section) {
+            ['dashboard', 'movements', 'payments', 'units'].forEach(s => {
+                const el = document.getElementById(`section-${s}`);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(`section-${section}`).classList.remove('hidden');
+
+            if (section === 'units') loadUnits();
+            if (section === 'movements') loadUnitsForSelect();
+            if (section === 'payments') loadOccupiedUnitsForPayment();
+        }
+
+        // Load Dashboard
+        async function loadDashboard() {
+            try {
+                const res = await fetch(`${API_URL}/dashboard`);
+                const data = await res.json();
+
+                if (data.success) {
+                    document.getElementById('statTotal').textContent = data.summary.total_units;
+                    document.getElementById('statOccupied').textContent = data.summary.occupied;
+                    document.getElementById('statVacant').textContent = data.summary.vacant;
+                    document.getElementById('statExpiring').textContent = data.alerts.expiring_leases;
+                    document.getElementById('statRevenue').textContent = 'AED ' + data.financial.this_month_revenue.toLocaleString();
+
+                    // Recent movements
+                    const movementsContainer = document.getElementById('recentMovements');
+                    if (data.recent_activity && data.recent_activity.length > 0) {
+                        movementsContainer.innerHTML = data.recent_activity.map(m => {
+                            const typeClass = m.movement_type === 'Move-In' ? 'move-in' : m.movement_type === 'Move-Out' ? 'move-out' : 'renewal';
+                            const icon = m.movement_type === 'Move-In' ? 'fa-sign-in-alt text-emerald-600' : m.movement_type === 'Move-Out' ? 'fa-sign-out-alt text-red-600' : 'fa-sync-alt text-amber-600';
+
+                            return `
+                                <div class="movement-card ${typeClass} bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                                    <div class="flex justify-between items-start">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                                                <i class="fas ${icon}"></i>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold text-gray-800">${m.movement_type}</div>
+                                                <div class="text-sm text-gray-600">${m.unit.unit_id} - ${m.resident.name}</div>
+                                                <div class="text-xs text-gray-400">${new Date(m.metadata.created_at).toLocaleDateString()}</div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="font-bold text-gray-800">AED ${m.monthly_rent?.toLocaleString()}</div>
+                                            <div class="text-xs text-gray-500">per month</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                    }
+
+                    // Expiring leases
+                    document.getElementById('expiringCount').textContent = data.alerts.expiring_leases;
+                    const expiringContainer = document.getElementById('expiringLeases');
+                    if (data.alerts.expiring_list && data.alerts.expiring_list.length > 0) {
+                        expiringContainer.innerHTML = data.alerts.expiring_list.map(e => `
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <div class="font-bold text-red-800">${e.unit_id}</div>
+                                        <div class="text-sm text-red-600">Lease expires: ${new Date(e.lease_expiry).toLocaleDateString()}</div>
+                                    </div>
+                                    <div class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                        ${e.days_left} days
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('');
+                    } else {
+                        expiringContainer.innerHTML = '<div class="text-center text-gray-400 py-8">No expiring leases</div>';
+                    }
+                }
+            } catch (error) {
+                console.error('Dashboard error:', error);
+            }
+        }
+
+        // Load units for dropdowns
+        async function loadUnitsForSelect() {
+            try {
+                const res = await fetch(`${API_URL}/units`);
+                const data = await res.json();
+
+                const select = document.getElementById('movementUnit');
+                const vacantUnits = data.units?.filter(u => u.status === 'Vacant') || [];
+
+                select.innerHTML = '<option value="">Select unit...</option>' +
+                    vacantUnits.map(u => `<option value="${u.unit_id}" data-type="${u.unit_type}" data-building="${u.building}">${u.unit_id} - ${u.building} Tower (${u.unit_type})</option>`).join('');
+            } catch (error) {
+                console.error('Error loading units:', error);
+            }
+        }
+
+        async function loadOccupiedUnitsForPayment() {
+            try {
+                const res = await fetch(`${API_URL}/units?status=Occupied`);
+                const data = await res.json();
+
+                const select = document.getElementById('paymentUnit');
+                select.innerHTML = '<option value="">Select unit...</option>' +
+                    (data.units || []).map(u => `<option value="${u.unit_id}" data-resident="${u.current_resident?.full_name || ''}">${u.unit_id} - ${u.current_resident?.full_name || 'No resident'}</option>`).join('');
+            } catch (error) {
+                console.error('Error loading units:', error);
+            }
+        }
+
+        // Record Movement
+        async function recordMovement(e) {
+            e.preventDefault();
+
+            const movementType = document.querySelector('input[name="movementType"]:checked').value;
+            const unitSelect = document.getElementById('movementUnit');
+            const unitId = unitSelect.value;
+            const unitOption = unitSelect.options[unitSelect.selectedIndex];
+
+            const movement = {
+                movement_type: movementType,
+                unit: {
+                    unit_id: unitId,
+                    building: unitOption.dataset.building,
+                    unit_type: unitOption.dataset.type
+                },
+                resident: {
+                    name: document.getElementById('residentName').value,
+                    phone: document.getElementById('residentPhone').value,
+                    email: document.getElementById('residentEmail').value
+                },
+                move_in_date: document.getElementById('moveInDate').value,
+                lease_end: document.getElementById('leaseEndDate').value,
+                monthly_rent: parseFloat(document.getElementById('monthlyRent').value),
+                security_deposit: parseFloat(document.getElementById('securityDeposit').value) || 0,
+                payment_received: {
+                    amount: parseFloat(document.getElementById('initialPayment').value) || 0,
+                    method: document.getElementById('initialPaymentMethod').value,
+                    reference: document.getElementById('initialPaymentRef').value,
+                    date: new Date()
+                }
+            };
+
+            try {
+                const res = await fetch(`${API_URL}/movements`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(movement)
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(`${movementType} recorded! Auto-updated unit & resident.`);
+                    e.target.reset();
+                    showSection('dashboard');
+                    loadDashboard();
+
+                    // Reset dates
+                    document.getElementById('moveInDate').valueAsDate = new Date();
+                    const nextYear = new Date();
+                    nextYear.setFullYear(nextYear.getFullYear() + 1);
+                    document.getElementById('leaseEndDate').valueAsDate = nextYear;
+                } else {
+                    showToast(data.error || 'Error recording movement', 'error');
+                }
+            } catch (error) {
+                showToast('Network error', 'error');
+            }
+        }
+
+        // Record Payment
+        async function recordPayment(e) {
+            e.preventDefault();
+
+            const unitSelect = document.getElementById('paymentUnit');
+            const unitId = unitSelect.value;
+            const residentName = unitSelect.options[unitSelect.selectedIndex].dataset.resident;
+
+            const payment = {
+                unit_id: unitId,
+                resident_id: unitId, // Simplified - in real app, get from unit
+                resident_name: residentName,
+                payment_type: document.getElementById('paymentType').value,
+                amount: parseFloat(document.getElementById('paymentAmount').value),
+                method: document.getElementById('paymentMethod').value,
+                reference_number: document.getElementById('paymentReference').value,
+                status: 'Cleared'
+            };
+
+            // Add rent period if rent payment
+            if (payment.payment_type === 'Rent') {
+                payment.rent_period = {
+                    month: parseInt(document.getElementById('rentMonth').value),
+                    year: parseInt(document.getElementById('rentYear').value)
+                };
+            }
+
+            try {
+                const res = await fetch(`${API_URL}/payments`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payment)
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    showToast(`Payment recorded! Receipt: ${data.receipt_number || 'Pending'}`);
+                    e.target.reset();
+                    document.getElementById('paymentDate').valueAsDate = new Date();
+                    showSection('dashboard');
+                    loadDashboard();
+                } else {
+                    showToast(data.error || 'Error recording payment', 'error');
+                }
+            } catch (error) {
+                showToast('Network error', 'error');
+            }
+        }
+
+        // Load Units Table
+        async function loadUnits() {
+            try {
+                const building = document.getElementById('filterBuilding').value;
+                const status = document.getElementById('filterStatus').value;
+
+                let url = `${API_URL}/units`;
+                if (building || status) {
+                    const params = new URLSearchParams();
+                    if (building) params.append('building', building);
+                    if (status) params.append('status', status);
+                    url += `?${params.toString()}`;
+                }
+
+                const res = await fetch(url);
+                const data = await res.json();
+
+                const tbody = document.getElementById('unitsTable');
+                tbody.innerHTML = (data.units || []).map(u => {
+                    const statusColor = u.status === 'Occupied' ? 'bg-emerald-100 text-emerald-800' : u.status === 'Vacant' ? 'bg-amber-100 text-amber-800' : 'bg-gray-100 text-gray-800';
+                    const expiryWarning = u.days_until_expiry && u.days_until_expiry <= 30 ? 'text-red-600 font-bold' : 'text-gray-600';
+
+                    return `
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-bold text-gray-800">${u.unit_id}</td>
+                            <td class="px-4 py-3 text-sm">${u.unit_type}</td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-1 rounded-full text-xs font-medium ${statusColor}">${u.status}</span>
+                            </td>
+                            <td class="px-4 py-3 text-sm">${u.current_resident?.full_name || '-'}</td>
+                            <td class="px-4 py-3 text-sm">AED ${u.current_rent?.toLocaleString() || 0}</td>
+                            <td class="px-4 py-3 text-sm ${expiryWarning}">
+                                ${u.lease_expiry ? new Date(u.lease_expiry).toLocaleDateString() : '-'}
+                                ${u.days_until_expiry ? `(${u.days_until_expiry}d)` : ''}
+                            </td>
+                            <td class="px-4 py-3 text-sm font-medium">AED ${u.revenue_to_date?.toLocaleString() || 0}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Error loading units:', error);
+            }
+        }
+
+        // Show/hide rent period based on payment type
+        document.getElementById('paymentType')?.addEventListener('change', function() {
+            const section = document.getElementById('rentPeriodSection');
+            section.style.display = this.value === 'Rent' ? 'block' : 'none';
+        });
+
+        // Toast
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toastMessage');
+            const icon = document.getElementById('toastIcon');
+
+            msg.textContent = message;
+            icon.className = type === 'error' ? 'fas fa-exclamation-circle text-red-400 mr-3' : 'fas fa-check-circle text-emerald-400 mr-3';
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+        }
+    </script>
+</body>
+</html>
